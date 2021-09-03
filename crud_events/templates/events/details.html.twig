@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}More Info {{event.name|capitalize}}{% endblock %}
+
+
+{% if (event.image starts with "www") or (event.image starts with "http")  %}
+    {% set image_link = event.image %}
+{% else %}
+    {% set image_link = asset("pictures/") ~ event.image %}
+{% endif %}    
+{% block body %}
+    <div class="my-2 mx-auto w-75">
+        <hr>
+        <h2 class="text-center">More info about "{{event.name|capitalize}}"</h2>
+        <div class="d-flex flex-row justify-content-center">
+            <img class='img-square rounded-circle m-2' src="{{image_link}}" alt='{{event.name|capitalize}}'>
+        </div>
+        {# #`fk_events_id`, `name`, `date`, `description`, `image`, `capacity`, `email`, `phone`, `address`, `url` #}
+        <ul class="list-group list-group-flush list-group-item-action">
+            <li class="list-group-item"><strong>Category:</strong> {{event.fk_events.name}} | <strong>Date:</strong> {{event.date|date('d.m.Y, H:i')}}h</li>
+            <li class="list-group-item"><strong>Description:</strong><br /> <q>{{event.description}}</q></li>
+            <li class="list-group-item"><strong>Capacity:</strong> {{event.capacity}}</li>
+            <li class="list-group-item"><strong>E-Mail: </strong><a href="mailto:{{event.email}}">{{event.email}}</a> | <strong>Phone: </strong><a href="tel:{{event.phone}}">{{event.phone}}</a></li>
+            <li class="list-group-item"><strong>Address:</strong> {{event.address}}</a></li>
+            <li class="list-group-item"><a href="{{event.url}}" target="_blank" rel="noopener noreferrer nofollow">{{event.url}}</a></li>
+        </ul><br>
+        <div class="text-center"><a class="btn btn-secondary" href="/events"><i class="fas fa-home"></i> Back to Events</a></div>
+    </div>
+{% endblock %}

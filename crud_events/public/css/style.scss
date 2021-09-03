@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+td {          
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+tr {
+    text-align: center;
+}
+
+
+.img-thumbnail {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.img-square {
+    width: 200px !important;
+    height: 200px !important;
+} 
+
+i {
+    font-size: 1.2rem !important;
+}
+
+
+.table-width {
+    width: 95% !important;
+}
+
+.cards-width {
+    width: 100% !important;
+}
+
+// Medium devices (tablets)
+@media screen and (min-width: 768px) {
+    i {
+        font-size: 1rem !important;
+    }
+    .cards-width {
+        width: 90% !important;
+    }
+}
+
+// Large devices (desktops, >= 1200px)
+@media screen and (min-width: 1200px) {
+    .img-thumbnail{
+        width: 25% !important;
+        height: auto !important;
+    }
+
+    .table-width {
+        max-width: 90% !important;
+    }
+
+    .cards-width {
+        width: 75% !important;
+    }
+
+}

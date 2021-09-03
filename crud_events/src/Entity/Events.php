@@ -20,7 +20,7 @@ class Events
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    public $name;
 
     /**
      * @ORM\Column(type="datetime")
@@ -65,7 +65,7 @@ class Events
     /**
      * @ORM\ManyToOne(targetEntity=Type::class)
      */
-    private $fk_events;
+    public $fk_events;
 
     public function getId(): ?int
     {

@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h2 class="text-center">Add New Event</h2>
+    <div class="mx-auto my-2 table-width">
+        {{form_start(form)}}
+        {{form_widget(form)}}
+        {{form_end(form)}}
+    </div>
+{% endblock %}

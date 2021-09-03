@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% if (event.image starts with "www") or (event.image starts with "http")  %}
+    {% set image_link = event.image %}
+{% else %}
+    {% set image_link = asset("pictures/") ~ event.image %}
+{% endif %}
+{% block body %}
+<div class="my-2 mx-auto w-75">
+    <h2 class="text-center">Edit <em>{{ event.name|capitalize }}</em></h2>
+    <hr />
+    <div class="d-flex flex-row justify-content-center">
+        <img class='img-square rounded-circle m-2' src="{{image_link}}" alt='{{event.name|capitalize}}'>
+    </div>
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    {{form_end(form)}}
+</div>
+{% endblock %}
