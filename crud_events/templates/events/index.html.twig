@@ -3,9 +3,13 @@
 {% block body %}
 {# `fk_events_id` `date`, `email`, `phone`, `address`, `url` #}
 {# {{event.fk_events_id.name|capitalize}} #}
-<div class="mx-auto my-2 w-50">
+<div class="mx-auto my-2 d-flex justify-content-center">
     {{form_start(form)}}
-    {{form_widget(form)}}
+    {{ form_row(form.Categories) }}
+    <div class="d-flex flex-column flex-md-row justify-content-center">
+        {{ form_row(form.filter) }}
+        <a href="{{ home_link }}" class="btn btn-secondary m-2">Show All</a>
+    </div>
     {{form_end(form)}}
 </div>
 

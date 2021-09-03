@@ -10,7 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType; ///?????
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ResetType;
+// use Symfony\Component\Form\Extension\Core\Type\ResetType;
+// use Symfony\Component\Form\ClickableInterface;
+// use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException; ///?????
 use Symfony\Component\Validator\Constraints\File;
@@ -33,32 +35,38 @@ class EventsController extends AbstractController
         // do filter button
         $form = $this->createFormBuilder()
         ->add("Categories", EntityType::class, array('attr'=>array("class"=>"form-control my-2"), 'class'=>Type::class, 'choice_label'=>'name'))
-        ->add('reset', SubmitType::class, array('label'=> 'Show All', 'attr' => array('class'=> 'btn-secondary m-2')))
-        ->add('filter', SubmitType::class, array('label'=> 'Filter Events', 'attr' => array('class'=> 'btn-primary m-2')))
+        // ->add('reset', SubmitType::class, array('label'=> 'Show All', 'attr' => array('class'=> 'btn btn-secondary m-2')))
+        ->add('filter', SubmitType::class, array('label'=> 'Filter Events', 'attr' => array('class'=> 'btn btn-primary m-2')))
         ->getForm();
         $form->handleRequest($request);
         $doctrine = $this->getDoctrine();
         $repository = $doctrine->getRepository('App:Events');
         $events = $repository->findAll();
 
-        // change what is return by events based on if the filter-button is clicked
+        // change what is stored in events based on if the filter-button is clicked
         if($form->isSubmitted() && $form->isValid()) {
             $category_id = $form["Categories"]->getData()->getId();
+            $events = $repository->findBy(array("fk_events" => $category_id));
+            $this->addFlash(
+                'notice',
+                'Events Filtered'
+            );        
             // another condition to get the right button
-            if ($form ) {
-                $events = $repository->findBy(array("fk_events" => $category_id));
-                $this->addFlash(
-                    'notice',
-                    'Events Filtered'
-                );
-            }
-            if ($form->get('reset')->isClicked()) {
-                $events = $repository->findAll();
-                $this->addFlash(
-                    'notice',
-                    'Show All Events'
-                );
-            }            
+            // $form->get("filter")->isClicked() NOT RECOGNIZED WHY????
+            // if ($form ) {
+            //     $events = $repository->findBy(array("fk_events" => $category_id));
+            //     $this->addFlash(
+            //         'notice',
+            //         'Events Filtered'
+            //     );
+            // }
+            // if ($form->get('reset')->isClicked()) {
+            //     $events = $repository->findAll();
+            //     $this->addFlash(
+            //         'notice',
+            //         'Show All Events'
+            //     );
+            // }            
         }
 
 
