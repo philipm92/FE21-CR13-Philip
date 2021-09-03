@@ -121,7 +121,6 @@ class EventsController extends AbstractController
             $url = $form['url']->getData();
             $fk_events = $form['fk_events']->getData();
             $image = $form["image"]->getData();
-            // dd($image);
             if ($image) {
                 // $image = ($image === NULL) ? "animal.png" : $image;
                 $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
