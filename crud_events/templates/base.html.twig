@@ -3,6 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <!-- Adding "Open Sans Regular 400" from Google Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+        <!-- Adding "Roboto Regular 400" from Google Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" /> 
+
         <!-- Bootstrap CSS CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <!-- Custom CSS -->
@@ -19,38 +27,68 @@
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
+
     {% set home_link = '/events' %}
     <body class="d-flex flex-column min-vh-100">
         <div class="container-fluid m-0 p-0">
             {# START Navbar  #}
-            <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-                <a class="navbar-brand" href="/">Big Events</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ home_link }}">Home<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">About us</a>
-                        </li>                       
-                        <li class="nav-item">
-                            <a class="nav-link" href="/events/create">Add Event</a>
-                        </li>
-                    </ul>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-danger" id="own-navbar-shadow">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Big Events</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-lg-flex flex-lg-row justify-content-lg-between" id="navbarSupportedContent">
+                            <ul class="navbar-nav mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{home_link}}">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/events/create">Add Event</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                </li>
+                            </ul>
+                            <div class="text-center navbar-nav mb-2 mb-lg-0 d-none d-lg-flex flex-lg-row">
+                                <a href="#" class="nav-link"><i class="fab fa-youtube"></i></a>
+                                <a href="#" class="nav-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="nav-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="nav-link"><i class="fab fa-facebook"></i></a>
+                            </div>
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-light" type="submit">Search</button>
+                            </form>
+
+                    </div>
                 </div>
             </nav>
             {# END Navbar #}
+            <header class="d-none d-lg-block bg-image own-home-bgimage"></header>
+            
             {% block body %}{% endblock %}
         </div>
         <!-- Bootstrap JS CDN Bundle -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     </body>
     {# START Footer #}
-    <footer class="mt-auto text-center p-3 bg-danger text-light">
-        <small>&copy; 2021 - Big Events</small> 
+    <footer class="mt-auto text-center p-3 bg-danger text-light" id="own-footer-shadow">
+        <div class="mb-2 mb-lg-0 d-flex flex-row justify-content-center">
+            <small>
+                &copy; 2021 - Big Events |
+                <a href="#" class="text-light">Privacy</a> |
+                <a href="#" class="text-light">Site notice</a> |
+                <a href="#" class="text-light">Contact us</a>
+            </small>
+        </div>
+        <div class="mb-2 mb-lg-0 d-flex d-lg-none flex-row justify-content-center">
+            <a href="#" class="nav-link text-light"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="nav-link text-light"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="nav-link text-light"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="nav-link text-light"><i class="fab fa-facebook"></i></a>
+        </div> 
     </footer>
     {# END Footer #}
 </html>
